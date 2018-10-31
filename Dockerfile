@@ -13,7 +13,7 @@ COPY etc/motd /etc/motd
 WORKDIR /home/rally/source
 
 ## NOTE(msimonin): Install my custom rally
-RUN git clone --depth 1 -b fix-1800447 https://github.com/msimonin/rally
+RUN git clone -b fix-1800447 https://github.com/msimonin/rally
 #RUN apt install --yes wget lsb-release
 WORKDIR rally
 #RUN chmod u+x install_rally.sh && \
