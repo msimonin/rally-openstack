@@ -12,6 +12,16 @@ COPY . /home/rally/source
 COPY etc/motd /etc/motd
 WORKDIR /home/rally/source
 
+## NOTE(msimonin): Install my custom rally
+RUN git clone --depth 1 -b fix-1800447 https://github.com/msimonin/rally
+#RUN apt install --yes wget lsb-release
+WORKDIR rally
+#RUN chmod u+x install_rally.sh && \
+#    ./install_rally.sh --url https://github.com/msimonin/rally --branch fix-1800447
+RUN pip install . --constraint upper-constraints.txt
+
+WORKDIR /home/rally/source
+
 RUN pip install . --constraint upper-constraints.txt && \
     pip install pymysql && \
     pip install psycopg2 && \
